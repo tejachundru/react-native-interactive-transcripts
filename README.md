@@ -1,6 +1,7 @@
 # react-native-interactive-transcripts
 
 Interactive Transcripts support in the react native.
+Supports (WEBVTT) , as of now
 (Work in progress)
 
 ## Installation
@@ -8,6 +9,18 @@ Interactive Transcripts support in the react native.
 ```sh
 npm install react-native-interactive-transcripts
 ```
+
+## Input Props
+| Prop  | type  | Description |
+| :------------ |:---------------:| :---------------:|
+| currentDuration | number | Pass in the current duration of the Video |
+| url | String | Url of the VTT file |
+
+## Callback
+| callBack  | return  | Description |
+| :------------ |:---------------:| :---------------:|
+| seekToStartDurationOnClick | number | Using this is callback value, seek your player to the particular transcript duration |
+
 
 ## Usage
 
