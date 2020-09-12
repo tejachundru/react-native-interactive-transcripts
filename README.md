@@ -1,6 +1,7 @@
 # react-native-interactive-transcripts
 
 Interactive Transcripts support in the react native.
+(Work in progress)
 
 ## Installation
 
