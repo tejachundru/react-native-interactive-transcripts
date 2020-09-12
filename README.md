@@ -43,6 +43,13 @@ import InteractiveTranscripts from "react-native-interactive-transcripts";
 
 ```
 
+##Demo 
+
+
+![Alt DEMO](https://github.com/tejachundru/react-native-interactive-transcripts/blob/media/example/transcript.gif?raw=true)
+
+
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
