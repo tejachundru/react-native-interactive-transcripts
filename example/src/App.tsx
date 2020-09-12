@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import InteractiveTranscripts from 'react-native-interactive-transcripts';
 import Video from 'react-native-video';
 
 export default function App() {
+  let player = useRef<Video>(null);
+
   let [duration, updateDuration] = useState(0);
   const progressCallback = (data: any) => {
     updateDuration(data.currentTime * 1000);
@@ -12,18 +14,24 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Video
-        style={{ width: '100%', height: '30%' }}
+        ref={(ref) => {
+          player = ref;
+        }}
+        style={{ width: '100%', height: '30%', backgroundColor: 'skyblue' }}
         source={{
           uri:
-            'https://thepaciellogroup.github.io/AT-browser-tests/video/ElephantsDream.mp4',
+            'https://html5multimedia.com/code/media/elephants-dream-medium.mp4',
         }} // Can be a URL or a local file.
         onProgress={progressCallback}
       />
       <InteractiveTranscripts
         currentDuration={duration}
         url={
-          'https://thepaciellogroup.github.io/AT-browser-tests/video/subtitles-en.vtt'
+          'https://html5multimedia.com/code/ch8/elephants-dream-subtitles-en.vtt'
         }
+        seekToStartDurationOnClick={(time) => {
+          player.seek(time);
+        }}
       />
     </View>
   );
