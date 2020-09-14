@@ -1,21 +1,38 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState, useEffect } from 'react';
-import { FlatList, Text, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  FlatList,
+  StyleProp,
+  Text,
+  TouchableOpacity,
+  ViewStyle,
+} from 'react-native';
 import WebVttParser from './VTTtoJsonParser.js';
 
 interface InteractiveTranscriptsProps {
   currentDuration: number;
   url: string;
-  seekToStartDurationOnClick: (p: number) => void;
+  seekToTranscriptDuration: (p: number) => void;
+  textStyle?: StyleProp<ViewStyle>;
+  textContainerStyle?: StyleProp<ViewStyle>;
+  contentContainerStyle?: StyleProp<ViewStyle>;
+  activeTranscriptColor?: string;
+  inactiveTranscriptColor?: string;
 }
 
-export default ({
-  currentDuration,
-  url,
-  seekToStartDurationOnClick,
+const InteractiveTranscripts = ({
+  currentDuration = 0,
+  url = '',
+  seekToTranscriptDuration = () => {},
+  textStyle = {},
+  textContainerStyle = { margin: 5 },
+  contentContainerStyle = {},
+  activeTranscriptColor = 'blue',
+  inactiveTranscriptColor = 'black',
 }: InteractiveTranscriptsProps) => {
   const [cueArray, setCueArray] = useState<any[]>([]);
-  const [selectedIndex, ChangeSelectedIndex] = useState(-1);
+  const [selectedIndex, changeSelectedIndex] = useState(-1);
+  let flatlistRef: any = useRef<FlatList>(null);
 
   useEffect(() => {
     cueArray.length === 0 &&
@@ -27,9 +44,16 @@ export default ({
         });
     if (cueArray.length > 0) {
       let cueval = cueTextAndIndex(cueArray, currentDuration);
-      ChangeSelectedIndex(cueval.cueindex);
+      changeSelectedIndex(cueval.cueindex);
+      if (cueval.cueindex >= 0 && selectedIndex !== cueval.cueindex) {
+        flatlistRef.scrollToIndex({
+          animated: true,
+          index: cueval.cueindex,
+          viewPosition: 0.3,
+        });
+      }
     }
-  }, [url, currentDuration, cueArray]);
+  }, [url, currentDuration, cueArray, selectedIndex]);
 
   /**
    * To find the CC current text to display
@@ -59,20 +83,28 @@ export default ({
     <>
       {cueArray !== null && (
         <FlatList
-          //contentContainerStyle={{ backgroundColor: 'red' }}
+          ref={(ref) => {
+            flatlistRef = ref;
+          }}
+          contentContainerStyle={contentContainerStyle}
           data={cueArray}
+          keyExtractor={(item) => `${item.startTime}`}
           renderItem={({ item, index }) => {
             return (
               <TouchableOpacity
-                style={{ margin: 5 }}
+                style={[textContainerStyle]}
                 onPress={() => {
-                  seekToStartDurationOnClick(cueArray[index].startTime / 1000);
+                  seekToTranscriptDuration(item.startTime / 1000);
                 }}
               >
                 {selectedIndex === index ? (
-                  <Text style={{ color: 'blue' }}>{item.text}</Text>
+                  <Text style={[{ color: activeTranscriptColor }, textStyle]}>
+                    {item.text}
+                  </Text>
                 ) : (
-                  <Text>{item.text}</Text>
+                  <Text style={[{ color: inactiveTranscriptColor }, textStyle]}>
+                    {item.text}
+                  </Text>
                 )}
               </TouchableOpacity>
             );
@@ -82,3 +114,5 @@ export default ({
     </>
   );
 };
+
+export default InteractiveTranscripts;

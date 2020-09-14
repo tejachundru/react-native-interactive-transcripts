@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 import { useState, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -5,7 +6,7 @@ import InteractiveTranscripts from 'react-native-interactive-transcripts';
 import Video from 'react-native-video';
 
 export default function App() {
-  let player = useRef<Video>(null);
+  let player: any = useRef<Video>(null);
 
   let [duration, updateDuration] = useState(0);
   const progressCallback = (data: any) => {
@@ -29,7 +30,7 @@ export default function App() {
         url={
           'https://html5multimedia.com/code/ch8/elephants-dream-subtitles-en.vtt'
         }
-        seekToStartDurationOnClick={(time) => {
+        seekToTranscriptDuration={(time) => {
           player.seek(time);
         }}
       />
