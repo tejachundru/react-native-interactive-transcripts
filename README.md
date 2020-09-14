@@ -13,13 +13,18 @@ npm install react-native-interactive-transcripts
 ## Input Props
 | Prop  | type  | Description |
 | :------------ |:---------------:| :---------------:|
-| currentDuration | number | Pass in the current duration of the Video |
-| url | String | Url of the VTT file |
+| currentDuration | number (required) | Pass in the current duration of the Video |
+| url | String (required) | Url of the VTT file |
+|textStyle | styleObject (optional) | Style for the Text in transcript|
+|textContainerStyle | styleObject (optional) | Style for the Text Container|
+|contentContainerStyle | styleObject (optional) | Style for the Content(list)|
+|activeTranscriptColor | string (optional) | active Transcript color|
+|inactiveTranscriptColor| string (optional) | inactive Transcript color|
 
 ## Callback
 | callBack  | return  | Description |
 | :------------ |:---------------:| :---------------:|
-| seekToStartDurationOnClick | number | Using this is callback value, seek your player to the particular transcript duration |
+| seekToTranscriptDuration | number | Using this is callback value, seek your player to the particular transcript duration |
 
 
 ## Usage
@@ -48,7 +53,7 @@ import InteractiveTranscripts from "react-native-interactive-transcripts";
         url={
           'https://html5multimedia.com/code/ch8/elephants-dream-subtitles-en.vtt'
         }
-        seekToStartDurationOnClick={(time) => { 
+        seekToTranscriptDuration={(time) => { 
           player.seek(time); // seek to the clicked transcrpit start duration .
         }}
       />
