@@ -1,4 +1,6 @@
-# react-native-interactive-transcripts
+[![npm version](https://badge.fury.io/js/react-native-interactive-transcripts.svg)](https://badge.fury.io/js/react-native-interactive-transcripts)
+
+# react-native-interactive-transcripts 
 
 Interactive Transcripts support in the react native.
 Supports (WEBVTT) , as of now
@@ -8,6 +10,12 @@ Supports (WEBVTT) , as of now
 
 ```sh
 npm install react-native-interactive-transcripts
+```
+
+or 
+
+```sh
+yarn add react-native-interactive-transcripts
 ```
 
 ## Input Props
@@ -62,7 +70,7 @@ import InteractiveTranscripts from "react-native-interactive-transcripts";
 
 ```
 
-##Demo 
+## Demo 
 
 
 ![Alt DEMO](https://github.com/tejachundru/react-native-interactive-transcripts/blob/media/example/transcript.gif?raw=true)
