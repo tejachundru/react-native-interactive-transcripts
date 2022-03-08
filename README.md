@@ -1,6 +1,6 @@
 [![npm version](https://badge.fury.io/js/react-native-interactive-transcripts.svg)](https://badge.fury.io/js/react-native-interactive-transcripts)
 
-# react-native-interactive-transcripts 
+# react-native-interactive-transcripts
 
 Interactive Transcripts support in the react native.
 Supports (WEBVTT) , as of now
@@ -12,28 +12,29 @@ Supports (WEBVTT) , as of now
 npm install react-native-interactive-transcripts
 ```
 
-or 
+or
 
 ```sh
 yarn add react-native-interactive-transcripts
 ```
 
 ## Input Props
-| Prop  | type  | Description |
-| :------------ |:---------------:| :---------------:|
-| currentDuration | number (required) | Pass in the current duration of the Video |
-| url | String (required) | Url of the VTT file |
-|textStyle | styleObject (optional) | Style for the Text in transcript|
-|textContainerStyle | styleObject (optional) | Style for the Text Container|
-|contentContainerStyle | styleObject (optional) | Style for the Content(list)|
-|activeTranscriptColor | string (optional) | active Transcript color|
-|inactiveTranscriptColor| string (optional) | inactive Transcript color|
+
+| Prop                    |          type          |                Description                |
+| :---------------------- | :--------------------: | :---------------------------------------: |
+| currentDuration         |   number (required)    | Pass in the current duration of the Video |
+| url                     |   String (required)    |            Url of the VTT file            |
+| textStyle               | styleObject (optional) |     Style for the Text in transcript      |
+| textContainerStyle      | styleObject (optional) |       Style for the Text Container        |
+| contentContainerStyle   | styleObject (optional) |        Style for the Content(list)        |
+| activeTranscriptColor   |   string (optional)    |          active Transcript color          |
+| inactiveTranscriptColor |   string (optional)    |         inactive Transcript color         |
 
 ## Callback
-| callBack  | return  | Description |
-| :------------ |:---------------:| :---------------:|
-| seekToTranscriptDuration | number | Using this is callback value, seek your player to the particular transcript duration |
 
+| callBack                 | return |                                     Description                                      |
+| :----------------------- | :----: | :----------------------------------------------------------------------------------: |
+| seekToTranscriptDuration | number | Using this is callback value, seek your player to the particular transcript duration |
 
 ## Usage
 
@@ -61,7 +62,7 @@ import InteractiveTranscripts from "react-native-interactive-transcripts";
         url={
           'https://html5multimedia.com/code/ch8/elephants-dream-subtitles-en.vtt'
         }
-        seekToTranscriptDuration={(time) => { 
+        seekToTranscriptDuration={(time) => {
           player.seek(time); // seek to the clicked transcrpit start duration .
         }}
       />
@@ -70,12 +71,9 @@ import InteractiveTranscripts from "react-native-interactive-transcripts";
 
 ```
 
-## Demo 
-
+## Demo
 
 ![Alt DEMO](https://github.com/tejachundru/react-native-interactive-transcripts/blob/media/example/transcript.gif?raw=true)
-
-
 
 ## Contributing
 

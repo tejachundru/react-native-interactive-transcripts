@@ -17,9 +17,8 @@ function splitTimeStamp(timeStamp) {
   if (millisecondSeparator === '') {
     //error ('Unable to process timestamp');
   }
-  const [seconds, milliseconds] = secondsAndMilliseconds.split(
-    millisecondSeparator
-  );
+  const [seconds, milliseconds] =
+    secondsAndMilliseconds.split(millisecondSeparator);
   return {
     hours: Number(hours),
     minutes: Number(minutes),
